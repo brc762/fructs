@@ -6,27 +6,18 @@
 //
 
 import SwiftUI
-
 struct OnboardingView: View {
     var body: some View {
-        TabView.init(selection: /*@START_MENU_TOKEN@*/.constant(1)/*@END_MENU_TOKEN@*/,
-                     content:  {
-                        //MARK: CONTENT
-                        
-                        ForEach(0..<5) { arg in
-                            
-                            FruitCardView().tabItem {
-                                Text("Nathany \(arg)")
-                                    .accentColor(.orange)
-                            }
-                        }
-                        
-
-                        
-                     })
-        
+        ZStack(alignment: .bottom) {
+            TabView {
+                ForEach(0..<3) {
+                    FruitCardView().tag($0)
+                }
+            }.tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
+        }
     }
 }
+
 
 struct OnboardingView_Previews: PreviewProvider {
     static var previews: some View {
